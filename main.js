@@ -20,4 +20,34 @@ function showQuestion() {
     });
 }
 
+function showCategories() {
+    const categories = ['US History', 'Basketball', 'Literature', 'Musicians', 'Africa', 'Baking Ingredients'];
+
+    const categoryCells = document.querySelectorAll('.cat');
+    categoryCells.forEach((el, i)=>{
+        el.innerText = categories[i].toUpperCase();
+    });
+}
+
+ class Category {
+     constructor(name, description, questions) {
+         this.name = name;
+         this.description = description;
+         this.questions = questions;
+     }
+
+     getCategoryName() {
+         return this.name;
+     }
+
+     getDescription() {
+         return this.description;
+     }
+     
+     getQuestions() {
+         return this.questions;
+     }
+ }
+ 
 addClickEvents();
+showCategories();
