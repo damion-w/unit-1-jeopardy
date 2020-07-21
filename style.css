@@ -6,26 +6,39 @@ h1 {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 100px;
-    line-height: 100px;
     background: #002A93;
-    
 }
 
 .cat, .ques {
     /* Vertically and horizontally centers content in each cell */
     margin: auto;
     font-family: Helvetica;
-    font-size: 50px;
     font-weight: 900;    
 
 }
 
 .cat {
     color: white;
-    font-size: 50px;
+    font-size: 25px;
     font-weight: 900;    
 }
 
 .ques {
     color: #E2A051;
+    font-size: 50px;
+
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer
 }
