@@ -21,22 +21,21 @@ function showQuestion() {
 }
 
 function showCategories() {
-    const categories = ['US History'];
+    //const categories = ["SUPERSTAR'S TEAM"];
 
-    const questions = [[100, `This person was the 44th president of the United States.`]];
+    const categories = ['TEAM?', 'US HISTORY', 'HIP-HOP', 'CARTOONS', 'AFRICA', 'CITY NICKNAMES'];
+
+    const questions = [[100,"LARRY BIRD"],[200,"MAGIC JOHNSON"],[300,"SIDNEY CROSBY"],[400,"KOBE BRYANT"],[500,"DEREK JETER"]];
 
     const categoryCells = document.querySelectorAll('.cat');
     categoryCells.forEach((el, i)=>{
-        el.innerText = categories[i].toUpperCase();
-        indexStartPoint = 7;
-        questions.forEach((el,i)=>{
-            const cell = document.querySelector(`#ques${indexStartPoint + i}`);
-            cell.innerText = questions[i][0];
-        })
+        el.innerText = categories[i];
+        questions.forEach((el,j)=>{
+            const cell = document.querySelector(`#ques${i}-${j}`);
+            cell.innerText = `$${questions[j][0]}`;        
+        });
     });
 }
-
-
  
 addClickEvents();
 showCategories();
