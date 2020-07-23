@@ -13,16 +13,20 @@ function addClickEvents() {
 
 function showQuestion() {
     alert(`I'm supposed to show a question`);
-    const overlay = document.querySelector('#overlay');
-    overlay.style.display = 'block';
-    overlay.addEventListener('click', (e)=> {
-        overlay.style.display = 'none';
+    // const overlay = document.querySelector('#overlay');
+    // overlay.style.display = 'block';
+    // overlay.addEventListener('click', (e)=> {
+    //     overlay.style.display = 'none';
+    // });
+
+    const modal = document.querySelector('#myModal');
+    modal.style.display = 'block';
+    modal.addEventListener('click', (e) => {
+        modal.style.display = 'none';
     });
 }
 
 function showCategories() {
-    //const categories = ["SUPERSTAR'S TEAM"];
-
     const categories = ['TEAM?', 'US HISTORY', 'HIP-HOP', 'CARTOONS', 'AFRICA', 'CITY NICKNAMES'];
 
     const questions = [[100,"LARRY BIRD"],[200,"MAGIC JOHNSON"],[300,"SIDNEY CROSBY"],[400,"KOBE BRYANT"],[500,"DEREK JETER"]];
@@ -39,3 +43,20 @@ function showCategories() {
  
 addClickEvents();
 showCategories();
+
+
+
+
+
+
+
+
+
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
