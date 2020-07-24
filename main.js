@@ -36,21 +36,16 @@ function showQuestion(e) {
 
 function showCategories() {
     const categoryCells = document.querySelectorAll('.cat');
-    const questionCelLs = document.querySelectorAll('.ques');
-
-    // console.log(categoryCells.length)
+    const questionCells = document.querySelectorAll('.ques');
 
     categoryCells.forEach((el,i)=>{
-        el.innerText = gameBoard[i].name.toUpperCase();
-    })
-
-//     categoryCells.forEach((el, i)=>{
-//         el.innerText = categories[i];
-//         questions.forEach((el,j)=>{
-//             const cell = document.querySelector(`#ques${i}-${j}`);
-//             cell.innerText = `$${questions[j][0]}`;        
-//         });
-//     });
+        el.innerText = gameBoard[i].getName().toUpperCase();
+        
+        gameBoard[i].getQuestions().forEach((e,j)=>{
+            const cell = document.querySelector(`#ques${i}-${j}`);
+            cell.innerText = `$${gameBoard[i].questions[j].getValue()}`;            
+        })
+    });
 }
  
 const questions = [[100, "LARRY BIRD"], [200, "MAGIC JOHNSON"], [300, "SIDNEY CROSBY"], [400, "KOBE BRYANT"], [500, "DEREK JETER"]];
