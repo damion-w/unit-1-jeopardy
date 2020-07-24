@@ -3,31 +3,14 @@ const jsGreeting = document.createElement('p');
 jsGreeting.innerText = "main.js is connected";
 document.body.prepend(jsGreeting);
 
-/* Adds click events to each cell */
-function addClickEvents() {
-    const questionCells = document.querySelectorAll('.ques');
-    questionCells.forEach((el) => {
-        el.addEventListener('click', showQuestion);
-    });
-}
-
 function showQuestion(e) {
-    // alert(`I'm supposed to show a question`);
-    
-    console.log(e.target.id)
-
     const clickedCell = e.target.id;
     const clickedCellColumn = Number(clickedCell[4]);
-    const clickedCellRow = Number(clickedCell[6]);
-
-    console.log(clickedCellColumn, clickedCellRow)
-    
+    const clickedCellRow = Number(clickedCell[6]);    
 
     const questionModal = document.querySelector('#questionModal');
+    
     questionModal.style.display = 'block';
-    questionModal.addEventListener('click', (e) => {
-        questionModal.style.display = 'none';
-    });
 
 
     const questionbox = document.querySelector('#questionBox');
@@ -47,9 +30,6 @@ function showCategories() {
         })
     });
 }
- 
-const questions = [[100, "LARRY BIRD"], [200, "MAGIC JOHNSON"], [300, "SIDNEY CROSBY"], [400, "KOBE BRYANT"], [500, "DEREK JETER"]];
-
 
 class CategoryAndQuestions {
     constructor (name, questions) {
@@ -137,5 +117,14 @@ const sounds = new CategoryAndQuestions("SOUNDS GOOD!", soundsQuestions);
 
 const gameBoard = [teams, rolePlay, africa, realityTV, georgia, sounds];
 
-addClickEvents();
+const questionCells = document.querySelectorAll('.ques');
+questionCells.forEach((el) => {
+    el.addEventListener('click', showQuestion);
+});
+
+const questionModal = document.querySelector('#questionModal');
+questionModal.addEventListener('click', (e) => {
+    questionModal.style.display = 'none';
+})
+
 showCategories();
