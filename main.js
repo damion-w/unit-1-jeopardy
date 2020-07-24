@@ -36,17 +36,23 @@ function showQuestion(e) {
 
 function showCategories() {
     const categoryCells = document.querySelectorAll('.cat');
-    categoryCells.forEach((el, i)=>{
-        el.innerText = categories[i];
-        questions.forEach((el,j)=>{
-            const cell = document.querySelector(`#ques${i}-${j}`);
-            cell.innerText = `$${questions[j][0]}`;        
-        });
-    });
+    const questionCelLs = document.querySelectorAll('.ques');
+
+    // console.log(categoryCells.length)
+
+    categoryCells.forEach((el,i)=>{
+        el.innerText = gameBoard[i].name.toUpperCase();
+    })
+
+//     categoryCells.forEach((el, i)=>{
+//         el.innerText = categories[i];
+//         questions.forEach((el,j)=>{
+//             const cell = document.querySelector(`#ques${i}-${j}`);
+//             cell.innerText = `$${questions[j][0]}`;        
+//         });
+//     });
 }
  
-const categories = ['TEAM?', 'ROLE PLAY', 'AFRICA', 'CARTOONS', 'AFRICA', 'CITY NICKNAMES'];
-
 const questions = [[100, "LARRY BIRD"], [200, "MAGIC JOHNSON"], [300, "SIDNEY CROSBY"], [400, "KOBE BRYANT"], [500, "DEREK JETER"]];
 
 
@@ -125,14 +131,16 @@ const georgiaQues4 = new Question(500, "Flags honoring the nations who have host
 const georgiaQuestions = [georgiaQues0, georgiaQues1, georgiaQues2, georgiaQues3, georgiaQues4];
 const georgia = new CategoryAndQuestions("GEORGIA", georgiaQuestions);
 
-/* Sounds Like It To Me Category */
+/* Sounds Good To Me Category */
 const soundsQues0 = new Question(100, 'If your high-flying idea turns out to be a dud it lands with this sound that rhymes with dud', "THUD");
 const soundsQues1 = new Question(200, 'Hearing this hyphenated sound of tiny feet means you have kids in the house or mice', "PITTER-PATTER");
 const soundsQues2 = new Question(300, 'Hearing this hyphenated sound MEANS SOMEONE IS AT YOUR DOOR AND YOUR DOORBELL MIGHT NOT BE WORKING', "KNOCK-KNOCK");
 const soundsQues3 = new Question(400, 'Hearing this hyphenated sound MEANS SOMEONE IS AT YOUR DOOR AND YOUR DOORBELL IS WORKING', "DING-DONG");
 const soundsQues4 = new Question(500, "After a few hours in the hot sun I'm ready to drink a cold beverage this way also an engine sound", "CHUG");
 const soundsQuestions = [soundsQues0, soundsQues1, soundsQues2, soundsQues3, soundsQues4];
-const sounds = new CategoryAndQuestions("SOUNDS LIKE IT TO ME", soundsQuestions);
+const sounds = new CategoryAndQuestions("SOUNDS GOOD!", soundsQuestions);
+
+const gameBoard = [teams, rolePlay, africa, realityTV, georgia, sounds];
 
 addClickEvents();
 showCategories();
