@@ -7,14 +7,10 @@ function showQuestion(e) {
     const clickedCell = e.target.id;
     const clickedCellColumn = Number(clickedCell[4]);
     const clickedCellRow = Number(clickedCell[6]);    
-
-    const questionModal = document.querySelector('#questionModal');
     
     questionModal.style.display = 'block';
-
-
-    const questionbox = document.querySelector('#questionBox');
-    questionbox.innerText = questions[clickedCellRow][1];
+    const questionBox = document.querySelector('#questionBox');
+    questionBox.innerText = gameBoard[clickedCellColumn].getQuestions()[clickedCellRow].getQuestionStr(); 
 }
 
 function showCategories() {

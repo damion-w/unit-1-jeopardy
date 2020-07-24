@@ -49,7 +49,7 @@ h1 {
 }
 
 /* The Modal (background) */
-.modal {
+#questionModal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -63,10 +63,14 @@ h1 {
 }
 
 /* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+#questionBox {
+  background-color: #002A93;
+  color: white;
+  font-size: 50px;
+  height: 11.25em;
+  text-align: center;
+  margin: 2.25em auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 85%; /* Could be more or less, depending on screen size */
 }
