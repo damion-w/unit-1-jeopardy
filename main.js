@@ -15,11 +15,8 @@ function showQuestion(e) {
 
 function showCategories() {
     const categoryCells = document.querySelectorAll('.cat');
-    const questionCells = document.querySelectorAll('.ques');
-
     categoryCells.forEach((el,i)=>{
         el.innerText = gameBoard[i].getName().toUpperCase();
-        
         gameBoard[i].getQuestions().forEach((e,j)=>{
             const cell = document.querySelector(`#ques${i}-${j}`);
             cell.innerText = `$${gameBoard[i].questions[j].getValue()}`;            
@@ -113,6 +110,28 @@ const sounds = new CategoryAndQuestions("SOUNDS GOOD!", soundsQuestions);
 
 const gameBoard = [teams, rolePlay, africa, realityTV, georgia, sounds];
 
+class Player {
+    getName() {
+        return this.name;
+    }
+    setName(name) {
+        this.name = name;
+    }
+    getScore() {
+        return this.score;
+    }
+    setScore(score) {
+        this.score = score;
+    }
+    addToScore(val) {
+        this.score += val;
+    }
+    minusFromScore(val) {
+        this.score -= val;
+    }
+}
+
+
 const questionCells = document.querySelectorAll('.ques');
 questionCells.forEach((el) => {
     el.addEventListener('click', showQuestion);
@@ -124,3 +143,11 @@ questionModal.addEventListener('click', (e) => {
 })
 
 showCategories();
+const player1 = new Player();
+player1.setName("Damion");
+
+const player2 = new Player();
+player1.setName("Bilen");
+
+const player3 = new Player();
+player1.setName("Nofia");

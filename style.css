@@ -7,14 +7,21 @@ h1 {
     text-align: center;
 }
 
-.wrapper {
+.game-board {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 100px;
     background: #002A93;
 }
 
-.cat, .ques {
+.score-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 100px;
+    background: #002A93;
+}
+
+.cat, .ques, .score, .name {
     /* Vertically and horizontally centers content in each cell */
     margin: auto;
     font-family: Helvetica;
@@ -32,6 +39,19 @@ h1 {
     color: #E2A051;
     font-size: 50px;
 
+}
+
+.score {
+    color: white;
+    font-size: 50px;
+    font-weight: 900;    
+}
+
+.name {
+    color: white;
+    font-size: 50px;
+    font-weight: 900; 
+    font-family: 'Dancing Script', cursive;   
 }
 
 #overlay {
