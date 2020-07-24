@@ -24,6 +24,33 @@ function showCategories() {
     });
 }
 
+function setPlayerNames(player1Name, player2Name, player3Name) {
+    player1.setName("Damion");
+    document.querySelector('#p1name').innerText = player1.getName();
+
+    player2.setName("Bilen");
+    document.querySelector('#p2name').innerText = player2.getName();
+
+    player3.setName("Nofia");
+    document.querySelector('#p3name').innerText = player3.getName();
+}
+
+class Game {
+    setPlayerTurn(player) {
+        this.playerTurn = player;
+    }
+    setPlayerNames(player1Name, player2Name, player3Name) {
+        player1.setName("Damion");
+        document.querySelector('#p1name').innerText = player1.getName();
+
+        player2.setName("Bilen");
+        document.querySelector('#p2name').innerText = player2.getName();
+
+        player3.setName("Nofia");
+        document.querySelector('#p3name').innerText = player3.getName();
+    }
+}
+
 class CategoryAndQuestions {
     constructor (name, questions) {
         this.name = name;
@@ -142,12 +169,12 @@ questionModal.addEventListener('click', (e) => {
     questionModal.style.display = 'none';
 })
 
-showCategories();
+const currentGame = new Game();
 const player1 = new Player();
-player1.setName("Damion");
-
 const player2 = new Player();
-player1.setName("Bilen");
-
 const player3 = new Player();
-player1.setName("Nofia");
+
+currentGame.setPlayerNames("Damion", "Bilen", "Nofia");
+currentGame.setPlayerTurn(player1);
+showCategories();
+setPlayerTurn();
