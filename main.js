@@ -5,12 +5,23 @@ document.body.prepend(jsGreeting);
 
 function showQuestion(e) {
     const clickedCell = e.target.id;
-    const clickedCellColumn = Number(clickedCell[4]);
-    const clickedCellRow = Number(clickedCell[6]);    
-    
+    currentGame.setCurrentCell(Number(clickedCell[4]), Number(clickedCell[6]));
     questionModal.style.display = 'block';
     const questionBox = document.querySelector('#questionBox');
-    questionBox.innerText = gameBoard[clickedCellColumn].getQuestions()[clickedCellRow].getQuestionStr(); 
+
+    questionBox.innerText = gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getQuestionStr(); 
+}
+
+function submitAnswer(evt) {
+    evt.preventDefault();
+    console.log(evt.target.answer.value);
+
+    if (evt.target.answer.value.toUpperCase() === gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getAnswer().toUpperCase()) {
+        alert("You got it right")
+    }
+    else {
+        alert("You wrong!")
+    }
 }
 
 function showCategories() {
@@ -38,6 +49,12 @@ function setPlayerNames(player1Name, player2Name, player3Name) {
 class Game {
     setPlayerTurn(player) {
         this.playerTurn = player;
+        const whosTurn = document.createElement('p');
+        whosTurn.innerText = `${this.getPlayerTurn().getName()}, its your turn!`;
+        document.body.append(whosTurn);
+    }
+    getPlayerTurn() {
+        return this.playerTurn;
     }
     setPlayerNames(player1Name, player2Name, player3Name) {
         player1.setName("Damion");
@@ -48,6 +65,13 @@ class Game {
 
         player3.setName("Nofia");
         document.querySelector('#p3name').innerText = player3.getName();
+    }
+    setCurrentCell(col,row) {
+        this.currentCellColumn = col;
+        this.currentCellRow = row;
+    }
+    getCurrentCell() {
+        return [this.currentCellColumn,this.currentCellRow]
     }
 }
 
@@ -164,10 +188,13 @@ questionCells.forEach((el) => {
     el.addEventListener('click', showQuestion);
 });
 
-const questionModal = document.querySelector('#questionModal');
-questionModal.addEventListener('click', (e) => {
+const answer = document.querySelector('#ansform');
+answer.addEventListener('submit', submitAnswer);
+
+const idkButton = document.querySelector('#idk');
+idkButton.addEventListener('click', (e) => {
     questionModal.style.display = 'none';
-})
+});
 
 const currentGame = new Game();
 const player1 = new Player();
@@ -177,4 +204,3 @@ const player3 = new Player();
 currentGame.setPlayerNames("Damion", "Bilen", "Nofia");
 currentGame.setPlayerTurn(player1);
 showCategories();
-setPlayerTurn();

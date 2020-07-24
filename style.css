@@ -88,7 +88,20 @@ h1 {
   font-size: 50px;
   height: 11.25em;
   text-align: center;
-  margin: 2.25em auto; /* 15% from the top and centered */
+  margin: 2.25em auto .5em auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 85%; /* Could be more or less, depending on screen size */
+}
+
+/* Modal Content/Box */
+#answerBox {
+  background-color: #002A93;
+  color: white;
+  font-size: 50px;
+  height: 2.5em;
+  text-align: center;
+  margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 85%; /* Could be more or less, depending on screen size */
