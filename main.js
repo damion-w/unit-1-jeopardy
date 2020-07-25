@@ -1,7 +1,7 @@
 /* Confirms this file is connected to index.html */
-const jsGreeting = document.createElement('p');
-jsGreeting.innerText = "main.js is connected";
-document.body.prepend(jsGreeting);
+// const jsGreeting = document.createElement('p');
+// jsGreeting.innerText = "main.js is connected";
+// document.body.prepend(jsGreeting);
 
 function showQuestion(e) {
     const clickedCell = e.target.id;
@@ -21,7 +21,10 @@ function submitAnswer(evt) {
         currentGame.playerTurn.addToScore(gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getValue());
         const updatedScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
         updatedScore.innerText = `$${currentGame.getPlayerTurn().getScore()}`;
-        
+
+        const questionCell = document.querySelector(`#ques${currentGame.getCurrentCell()[0]}-${currentGame.getCurrentCell()[1]}`);
+        questionCell.innerText = "";
+        questionCell.removeEventListener('click', showQuestion);
     }
     else {
         alert(`WRONG!!! The correct answer is "${gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getAnswer().toUpperCase()}"`);
@@ -29,8 +32,18 @@ function submitAnswer(evt) {
         const updatedScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
         updatedScore.innerText = `$${currentGame.getPlayerTurn().getScore()}`;
 
-        if(currentGame.getPlayerTurn().getPositionNum() === 1) {
-            currentGame.setPlayerTurn(player2);
+        switch (currentGame.getPlayerTurn().getPositionNum()) {
+            case 1:
+                currentGame.setPlayerTurn(player2);
+                break;
+            case 2:
+                currentGame.setPlayerTurn(player3);
+                break;
+            case 3:
+                currentGame.setPlayerTurn(player1);
+                break;
+            default:
+                alert("FATAL ERROR: UNKNOWN POSITION");
         }
     }
 }
