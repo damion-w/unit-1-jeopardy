@@ -14,13 +14,24 @@ function showQuestion(e) {
 
 function submitAnswer(evt) {
     evt.preventDefault();
-    console.log(evt.target.answer.value);
+    questionModal.style.display = 'none';
 
     if (evt.target.answer.value.toUpperCase() === gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getAnswer().toUpperCase()) {
-        alert("You got it right")
+        alert("You got it right!!")
+        currentGame.playerTurn.addToScore(gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getValue());
+        const updatedScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
+        updatedScore.innerText = `$${currentGame.getPlayerTurn().getScore()}`;
+        
     }
     else {
-        alert("You wrong!")
+        alert(`WRONG!!! The correct answer is "${gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getAnswer().toUpperCase()}"`);
+        currentGame.playerTurn.minusFromScore(gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getValue());
+        const updatedScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
+        updatedScore.innerText = `$${currentGame.getPlayerTurn().getScore()}`;
+
+        if(currentGame.getPlayerTurn().getPositionNum() === 1) {
+            currentGame.setPlayerTurn(player2);
+        }
     }
 }
 
@@ -162,11 +173,19 @@ const sounds = new CategoryAndQuestions("SOUNDS GOOD!", soundsQuestions);
 const gameBoard = [teams, rolePlay, africa, realityTV, georgia, sounds];
 
 class Player {
+    constructor(positionNum) {
+        this.positionNum = positionNum;
+        this.score = 0;
+    }
+    
     getName() {
         return this.name;
     }
     setName(name) {
         this.name = name;
+    }
+    getPositionNum() {
+        return this.positionNum;
     }
     getScore() {
         return this.score;
@@ -182,7 +201,6 @@ class Player {
     }
 }
 
-
 const questionCells = document.querySelectorAll('.ques');
 questionCells.forEach((el) => {
     el.addEventListener('click', showQuestion);
@@ -197,9 +215,9 @@ idkButton.addEventListener('click', (e) => {
 });
 
 const currentGame = new Game();
-const player1 = new Player();
-const player2 = new Player();
-const player3 = new Player();
+const player1 = new Player(1);
+const player2 = new Player(2);
+const player3 = new Player(3);
 
 currentGame.setPlayerNames("Damion", "Bilen", "Nofia");
 currentGame.setPlayerTurn(player1);
