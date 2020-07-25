@@ -14,17 +14,12 @@ function showQuestion(e) {
 
 function submitAnswer(evt) {
     evt.preventDefault();
-    questionModal.style.display = 'none';
 
     if (evt.target.answer.value.toUpperCase() === gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getAnswer().toUpperCase()) {
         alert("You got it right!!")
         currentGame.playerTurn.addToScore(gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getValue());
         const updatedScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
         updatedScore.innerText = `$${currentGame.getPlayerTurn().getScore()}`;
-
-        const questionCell = document.querySelector(`#ques${currentGame.getCurrentCell()[0]}-${currentGame.getCurrentCell()[1]}`);
-        questionCell.innerText = "";
-        questionCell.removeEventListener('click', showQuestion);
     }
     else {
         alert(`WRONG!!! The correct answer is "${gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getAnswer().toUpperCase()}"`);
@@ -46,6 +41,12 @@ function submitAnswer(evt) {
                 alert("FATAL ERROR: UNKNOWN POSITION");
         }
     }
+
+    const questionCell = document.querySelector(`#ques${currentGame.getCurrentCell()[0]}-${currentGame.getCurrentCell()[1]}`);
+    questionCell.innerText = "";
+    questionCell.removeEventListener('click', showQuestion);
+    document.querySelector('#answer').value = "";
+    questionModal.style.display = 'none';
 }
 
 function showCategories() {
