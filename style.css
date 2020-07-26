@@ -2,16 +2,48 @@ body {
     font-family: Helvetica;
 }
 
+img {
+    display: flex;
+    margin: auto;
+}
 h1 {
     color: hotpink;
     text-align: center;
 }
 
 .game-board {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1150px;
+    background: black;
+    margin: auto;
+    justify-content: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.cat, .ques {
+    display: flex;
+    height: 75px;
+    width: 184px;
+    margin: 3px;
+    text-align: center;
     background: #002A93;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;    
+
+}
+
+.cat {
+    font-size: 1.5em;
+    color: white;
+}
+
+.ques {
+    font-size: 3.75em;
+    color: #E2A051;
+    cursor: pointer;
 }
 
 .score-panel {
@@ -19,25 +51,6 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 100px;
     background: #002A93;
-}
-
-.cat, .ques, .score, .name {
-    /* Vertically and horizontally centers content in each cell */
-    margin: auto;
-    font-family: Helvetica;
-    font-weight: 900;    
-}
-
-.cat {
-    color: white;
-    font-size: 20px;
-    font-weight: 900;    
-}
-
-.ques {
-    color: #E2A051;
-    font-size: 50px;
-
 }
 
 .score {
