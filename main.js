@@ -9,7 +9,7 @@ function showQuestion(e) {
     questionModal.style.display = 'block';
     const questionBox = document.querySelector('#questionBox');
 
-    questionBox.innerText = gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getQuestionStr(); 
+    questionBox.innerText = gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getQuestionStr().toUpperCase(); 
 }
 
 function submitAnswer(evt) {
@@ -47,6 +47,11 @@ function submitAnswer(evt) {
     questionCell.removeEventListener('click', showQuestion);
     document.querySelector('#answer').value = "";
     questionModal.style.display = 'none';
+    currentGame.incrementQuestionAttemptedCount();
+
+    if(currentGame.getQuestionAttemptedCount() === 30) {
+        currentGame.endGame();
+    }
 }
 
 function showCategories() {
@@ -72,6 +77,10 @@ function setPlayerNames(player1Name, player2Name, player3Name) {
 }
 
 class Game {
+    constructor() {
+        this.questionAttemptedCount = 0;
+        this.gameOver = false;
+    }
     setPlayerTurn(player) {
         this.playerTurn = player;
         const whosTurn = document.createElement('p');
@@ -97,6 +106,19 @@ class Game {
     }
     getCurrentCell() {
         return [this.currentCellColumn,this.currentCellRow]
+    }
+    incrementQuestionAttemptedCount() {
+        this.questionAttemptedCount++;
+    }
+    getQuestionAttemptedCount() {
+        return this.questionAttemptedCount;
+    }
+    isGameOver() {
+        return this.gameOver;
+    }
+    endGame() {
+        this.gameOver = true;
+        alert("Game Over!!");
     }
 }
 
