@@ -93,6 +93,10 @@ h1 {
     border: 5px solid white;
 }
 
+.negative-score {
+    color: red;
+}
+
 #overlay {
   position: fixed;
   display: none;
@@ -123,15 +127,18 @@ h1 {
 
 /* Modal Content/Box */
 #questionBox {
-  background-color: #002A93;
-  color: white;
-  font-size: 50px;
-  height: 11.25em;
-  text-align: center;
-  margin: 2.25em auto .5em auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 85%; /* Could be more or less, depending on screen size */
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #002A93;
+    color: white;
+    font-size: 60px;
+    height: 11.25em;
+    margin: 1em auto .5em auto;
+    padding: 0 1em 0 1em;
+    width: 85%;
 }
 
 /* Modal Content/Box */
@@ -144,5 +151,21 @@ h1 {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 85%; /* Could be more or less, depending on screen size */
+  width: 85%; 
+}
+
+#answer {
+    text-align: center;
+    font-size: 1.5rem;
+    width: 85%
+}
+
+#submit-button {
+    font-size: 1.5rem;
+    width: 5em;
+}
+
+#idk {
+    font-size: 1.5rem;
+    width: 7em;
 }

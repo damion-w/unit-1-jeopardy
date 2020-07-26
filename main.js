@@ -20,12 +20,32 @@ function submitAnswer(evt) {
         currentGame.playerTurn.addToScore(gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getValue());
         const updatedScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
         updatedScore.innerText = `$${currentGame.getPlayerTurn().getScore()}`;
+
+        if (currentGame.getPlayerTurn().getScore() >= 0) {
+            const currentPlayerScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
+
+            currentPlayerScore.classList.remove('negative-score');
+        }
     }
     else {
         alert(`WRONG!!! The correct answer is "${gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getAnswer().toUpperCase()}"`);
+
         currentGame.playerTurn.minusFromScore(gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getValue());
+
         const updatedScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
         updatedScore.innerText = `$${currentGame.getPlayerTurn().getScore()}`;
+
+        const scorePanel = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
+        scorePanel.classList.remove('current-turn');
+
+        const namePanel = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}name`);
+        namePanel.classList.remove('current-turn');
+
+        if (currentGame.getPlayerTurn().getScore() < 0) {
+            const currentPlayerScore = document.querySelector(`#p${currentGame.getPlayerTurn().getPositionNum()}score`);
+
+            currentPlayerScore.classList.add('negative-score');
+        }
 
         switch (currentGame.getPlayerTurn().getPositionNum()) {
             case 1:
