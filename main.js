@@ -9,6 +9,8 @@ function showQuestion(e) {
     questionModal.style.display = 'block';
     const questionBox = document.querySelector('#questionBox');
 
+    document.querySelector('#answer').focus()
+
     questionBox.innerText = gameBoard[currentGame.getCurrentCell()[0]].getQuestions()[currentGame.getCurrentCell()[1]].getQuestionStr().toUpperCase(); 
 }
 
@@ -86,13 +88,13 @@ function showCategories() {
 }
 
 function setPlayerNames(player1Name, player2Name, player3Name) {
-    player1.setName("Damion");
+    player1.setName(player1Name);
     document.querySelector('#p1name').innerText = player1.getName();
 
-    player2.setName("Bilen");
+    player2.setName(player2Name);
     document.querySelector('#p2name').innerText = player2.getName();
 
-    player3.setName("Nofia");
+    player3.setName(player3Name);
     document.querySelector('#p3name').innerText = player3.getName();
 }
 
@@ -100,6 +102,7 @@ class Game {
     constructor() {
         this.questionAttemptedCount = 0;
         this.gameOver = false;
+        this.winner = null;
     }
     setPlayerTurn(player) {
         this.playerTurn = player;
@@ -112,16 +115,6 @@ class Game {
     }
     getPlayerTurn() {
         return this.playerTurn;
-    }
-    setPlayerNames(player1Name, player2Name, player3Name) {
-        player1.setName("Damion");
-        document.querySelector('#p1name').innerText = player1.getName();
-
-        player2.setName("Bilen");
-        document.querySelector('#p2name').innerText = player2.getName();
-
-        player3.setName("Nofia");
-        document.querySelector('#p3name').innerText = player3.getName();
     }
     setCurrentCell(col,row) {
         this.currentCellColumn = col;
@@ -136,12 +129,30 @@ class Game {
     getQuestionAttemptedCount() {
         return this.questionAttemptedCount;
     }
-    isGameOver() {
-        return this.gameOver;
-    }
     endGame() {
         this.gameOver = true;
-        alert("Game Over!!");
+
+        if ((player1.getScore() > player2.getScore()) && (player1.getScore() > player3.getScore())) {
+            alert(`CONGRATULATIONS ${player1.getName()}, YOU'VE WON THE GAME!!!`);
+        }
+        else if ((player2.getScore() > player1.getScore()) && (player2.getScore() > player3.getScore())) {
+            alert(`CONGRATULATIONS ${player2.getName()}, YOU'VE WON THE GAME!!!`);
+        }
+        else if ((player3.getScore() > player1.getScore()) && (player1.getScore() > player2.getScore())) {
+            alert(`CONGRATULATIONS ${player3.getName()}, YOU'VE WON THE GAME!!!`);
+        }
+        else if (player1.getScore() === player2.getScore()) {
+            alert(`CONGRATULATIONS ${player1.getName()} and ${player2.getName()}, YOU BOTH WON THE GAME!!!`);
+        } 
+        else if (player1.getScore() === player3.getScore()) {
+            alert(`CONGRATULATIONS ${player1.getName()} and ${player3.getName()}, YOU BOTH WON THE GAME!!!`);
+        } 
+        else if (player2.getScore() === player3.getScore()) {
+            alert(`CONGRATULATIONS ${player2.getName()} and ${player3.getName()}, YOU BOTH WON THE GAME!!!`);
+        } 
+        else if ((player1.getScore() === player2.getScore()) && (player2.getScore() === player3.getScore())) {
+            alert(`CONGRATULATIONS ${player1.getName()} and ${player2.getName()}, YOU BOTH WON THE GAME!!!`);
+        } 
     }
 }
 
@@ -268,16 +279,11 @@ questionCells.forEach((el) => {
 const answer = document.querySelector('#ansform');
 answer.addEventListener('submit', submitAnswer);
 
-const idkButton = document.querySelector('#idk');
-idkButton.addEventListener('click', (e) => {
-    questionModal.style.display = 'none';
-});
-
 const currentGame = new Game();
 const player1 = new Player(1);
 const player2 = new Player(2);
 const player3 = new Player(3);
 
-currentGame.setPlayerNames("Damion", "Bilen", "Nofia");
+setPlayerNames("Player 1", "Player 2", "Player 3");
 currentGame.setPlayerTurn(player1);
 showCategories();
