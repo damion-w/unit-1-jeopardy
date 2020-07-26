@@ -23,6 +23,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     max-width: 1150px;
+    min-width: 1150px;
     background: black;
     margin: auto;
     justify-content: center;
@@ -57,6 +58,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     max-width: 830px;
+    min-width: 830px;
     background: black;
     margin: auto;
     justify-content: center;
