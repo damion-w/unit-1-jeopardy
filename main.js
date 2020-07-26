@@ -83,9 +83,12 @@ class Game {
     }
     setPlayerTurn(player) {
         this.playerTurn = player;
-        const whosTurn = document.createElement('p');
-        whosTurn.innerText = `${this.getPlayerTurn().getName()}, its your turn!`;
-        document.body.append(whosTurn);
+        
+        const scorePanel = document.querySelector(`#p${this.playerTurn.getPositionNum()}score`);
+        scorePanel.classList.add('current-turn');
+
+        const namePanel = document.querySelector(`#p${this.playerTurn.getPositionNum()}name`);
+        namePanel.classList.add('current-turn');
     }
     getPlayerTurn() {
         return this.playerTurn;
